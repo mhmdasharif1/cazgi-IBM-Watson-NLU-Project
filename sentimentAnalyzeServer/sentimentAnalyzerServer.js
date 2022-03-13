@@ -9,6 +9,17 @@ app.use(express.static('client'));
 const cors_app = require('cors');
 app.use(cors_app());
 
+const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1');
+const { IamAuthenticator } = require('ibm-watson/auth');
+
+const naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
+    version: '2021-08-01',
+    authenticator: new IamAuthenticator ({
+        apikey: api_key
+    }),
+    serviceUrl: api_url
+});
+return naturalLanguageUnderstanding;
 /*Uncomment the following lines to loan the environment 
 variables that you set up in the .env file*/
 
